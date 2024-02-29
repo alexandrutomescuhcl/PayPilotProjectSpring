@@ -1,0 +1,41 @@
+package com.paypilotprojectspring.user.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
+
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
+@Table(schema = "SPRING", name = "PROJECT_USER")
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+    @Id
+    private Long id;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    @Column(name = "roles")
+    private String roles;
+    @Column(name = "pan_id")
+    private Integer panId;
+    @Column(name = "bank_account_number")
+    private String bankAccountNumber;
+    @Column(name = "bank_lfsc_code")
+    private String bankLfscCode;
+    @Column(name = "bank_name")
+    private String bankName;
+}
