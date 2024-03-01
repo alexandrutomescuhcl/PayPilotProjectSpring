@@ -1,8 +1,8 @@
-package com.paypilotprojectspring.user.mapper;
+package com.paypilotprojectspring.bill.mapper;
 
-import com.paypilotprojectspring.user.dto.BillRetirementDTO;
-import com.paypilotprojectspring.user.model.Bill;
-import com.paypilotprojectspring.user.model.BillCategory;
+import com.paypilotprojectspring.bill.dto.BillGroceriesDTO;
+import com.paypilotprojectspring.bill.model.Bill;
+import com.paypilotprojectspring.bill.model.BillCategory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,19 +10,16 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public class BillRetirementMapper {
-    public BillRetirementDTO entityToDTO(Bill bill) {
+public class BillGroceriesMapper {
+    public BillGroceriesDTO entityToDTO(Bill bill) {
         if (bill == null) {
             return null;
         }
-        BillRetirementDTO billDTO = new BillRetirementDTO();
+        BillGroceriesDTO billDTO = new BillGroceriesDTO();
 
         billDTO.setBillId(bill.getBillId());
         billDTO.setBillName(bill.getBillName());
         billDTO.setBillCategory(bill.getBillCategory().toString());
-        billDTO.setDueDate(bill.getDueDate());
-        billDTO.setNotes(bill.getNotes());
-        billDTO.setRecurrent(bill.isRecurrent());
         billDTO.setSlNo(bill.getSlNo());
         billDTO.setMonth(bill.getMonth());
         billDTO.setAmount(bill.getAmount());
@@ -30,18 +27,18 @@ public class BillRetirementMapper {
         return billDTO;
     }
 
-    public List<BillRetirementDTO> entitiesToDTOs(List<Bill> bills) {
+    public List<BillGroceriesDTO> entitiesToDTOs(List<Bill> bills) {
         if (bills.isEmpty()) {
             return Collections.emptyList();
         }
-        List<BillRetirementDTO> billDTOs = new ArrayList<>();
+        List<BillGroceriesDTO> billDTOs = new ArrayList<>();
         for (Bill bill : bills) {
             billDTOs.add(entityToDTO(bill));
         }
         return billDTOs;
     }
 
-    public Bill dtoToEntity(BillRetirementDTO billDTO) {
+    public Bill dtoToEntity(BillGroceriesDTO billDTO) {
         if (billDTO == null) {
             return null;
         }
@@ -49,10 +46,8 @@ public class BillRetirementMapper {
 
         billEntity.setBillId(billDTO.getBillId());
         billEntity.setBillName(billDTO.getBillName());
+//        billEntity.setBillCategory(BillCategory.valueOf(billDTO.getBillCategory())); //until the creation of all DB tables
         billEntity.setBillCategory(BillCategory.valueOf(billDTO.getBillCategory()));
-        billEntity.setDueDate(billDTO.getDueDate());
-        billEntity.setNotes(billDTO.getNotes());
-        billEntity.setRecurrent(billDTO.isRecurrent());
         billEntity.setSlNo(billDTO.getSlNo());
         billEntity.setMonth(billDTO.getMonth());
         billEntity.setAmount(billDTO.getAmount());
@@ -60,12 +55,12 @@ public class BillRetirementMapper {
         return billEntity;
     }
 
-    public List<Bill> dtosToEntities(List<BillRetirementDTO> billDTOs) {
+    public List<Bill> dtosToEntities(List<BillGroceriesDTO> billDTOs) {
         if (billDTOs.isEmpty()) {
             return Collections.emptyList();
         }
         List<Bill> billEntities = new ArrayList<>();
-        for (BillRetirementDTO billDTO : billDTOs) {
+        for (BillGroceriesDTO billDTO : billDTOs) {
             billEntities.add(dtoToEntity(billDTO));
         }
         return billEntities;
