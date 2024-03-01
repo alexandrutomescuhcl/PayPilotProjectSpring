@@ -1,4 +1,4 @@
-package com.paypilotprojectspring.user.config;
+package com.paypilotprojectspring.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
