@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ScheduledPaymentDto {
+    private int id;
     private int userId;
     private int billId;
     private int bankDetailsId;

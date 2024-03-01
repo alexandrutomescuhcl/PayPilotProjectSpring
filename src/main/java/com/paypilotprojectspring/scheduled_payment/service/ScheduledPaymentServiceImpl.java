@@ -25,7 +25,6 @@ public class ScheduledPaymentServiceImpl implements ScheduledPaymentService {
     @Override
     public ScheduledPayment createScheduledPayment(ScheduledPaymentDto dto) {
         ScheduledPayment newScheduledPayment =  scheduledPaymentMapper.dtoToEntity(dto);
-        newScheduledPayment.setId(1); //todo: autogenerate id
 
         return scheduledPaymentRepository.save(newScheduledPayment);
     }

@@ -27,13 +27,13 @@ public class ScheduledPaymentController {
     }
 
     @PutMapping("/cancel/{id}")
-    public ResponseEntity<ScheduledPayment> cancelScheduledPayment(@RequestParam int id) {
+    public ResponseEntity<ScheduledPayment> cancelScheduledPayment(@PathVariable int id) {
         ScheduledPayment scheduledPayment = scheduledPaymentService.cancelScheduledPayment(id);
         return new ResponseEntity<>(scheduledPayment, HttpStatus.OK);
     }
 
     @PutMapping("/modify-date/{id}")
-    public ResponseEntity<ScheduledPayment> modifyScheduleDate(@RequestParam int id,
+    public ResponseEntity<ScheduledPayment> modifyScheduleDate(@PathVariable int id,
                                                                @RequestBody ScheduledPaymentUpdateDateDto dto) {
         ScheduledPayment scheduledPayment = scheduledPaymentService.modifyScheduleDate(id, dto);
         return new ResponseEntity<>(scheduledPayment, HttpStatus.OK);
