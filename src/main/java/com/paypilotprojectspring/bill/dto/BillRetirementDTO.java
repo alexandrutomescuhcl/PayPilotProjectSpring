@@ -1,4 +1,4 @@
-package com.paypilotprojectspring.user.dto;
+package com.paypilotprojectspring.bill.dto;
 
 import lombok.*;
 
