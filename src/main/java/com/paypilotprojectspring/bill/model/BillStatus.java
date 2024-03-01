@@ -1,4 +1,4 @@
-package com.paypilotprojectspring.user.model;
+package com.paypilotprojectspring.bill.model;
 
 public enum BillStatus {
     UPCOMING("UPCOMING"),

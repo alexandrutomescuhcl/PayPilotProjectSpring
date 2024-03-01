@@ -1,9 +1,8 @@
-package com.paypilotprojectspring.user.controller;
+package com.paypilotprojectspring.bill.controller;
 
 
-import com.paypilotprojectspring.user.dto.BillGroceriesDTO;
-import com.paypilotprojectspring.user.model.Bill;
-import com.paypilotprojectspring.user.service.BillGroceriesService;
+import com.paypilotprojectspring.bill.dto.BillGroceriesDTO;
+import com.paypilotprojectspring.bill.service.BillGroceriesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,3 +31,4 @@ public class BillGroceriesController {
 
 
 }
+

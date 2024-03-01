@@ -1,4 +1,4 @@
-package com.paypilotprojectspring.user.model;
+package com.paypilotprojectspring.bill.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

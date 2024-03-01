@@ -1,9 +1,9 @@
-package com.paypilotprojectspring.user.service;
+package com.paypilotprojectspring.bill.service;
 
-import com.paypilotprojectspring.user.dto.BillGroceriesDTO;
-import com.paypilotprojectspring.user.mapper.BillGroceriesMapper;
-import com.paypilotprojectspring.user.model.Bill;
-import com.paypilotprojectspring.user.repository.BillGroceriesRepository;
+import com.paypilotprojectspring.bill.dto.BillGroceriesDTO;
+import com.paypilotprojectspring.bill.mapper.BillGroceriesMapper;
+import com.paypilotprojectspring.bill.model.Bill;
+import com.paypilotprojectspring.bill.repository.BillGroceriesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
