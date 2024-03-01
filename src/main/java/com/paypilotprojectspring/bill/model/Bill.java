@@ -27,6 +27,8 @@ public class Bill {
     private LocalDate dueDate;
     @Column(name = "amount")
     private double amount;
+    @Column(name = "due_amount")
+    private double due_amount;
     /**
      * The 'notes' field can be empty, it's not mandatory to be populated
      */
