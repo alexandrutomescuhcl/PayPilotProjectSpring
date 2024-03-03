@@ -1,18 +1,18 @@
 package com.paypilotprojectspring.bill.repository;
 
 import com.paypilotprojectspring.bill.model.Bill;
+import com.paypilotprojectspring.bill.model.BillCategory;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BillGroceriesRepository extends CrudRepository<Bill, Long> {
+public interface BillRepository extends CrudRepository<Bill, Long> {
 
-    @Query(value="SELECT b FROM Bill b WHERE b.billCategory = 'GROCERIES'")
-    List<Bill> findAll();
-
+    List<Bill> findBillsByBillCategory(BillCategory category);
     Optional<Bill> findByBillId(Long id);
 }
