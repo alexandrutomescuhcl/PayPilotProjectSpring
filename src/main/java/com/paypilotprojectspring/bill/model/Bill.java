@@ -1,5 +1,6 @@
 package com.paypilotprojectspring.bill.model;
 
+import com.paypilotprojectspring.notification.model.Notification;
 import com.paypilotprojectspring.user.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -58,4 +60,6 @@ public class Bill {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id", referencedColumnName = "id")
     private User user;
+    @OneToMany
+    private List<Notification> notificationList;
 }
