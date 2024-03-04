@@ -1,11 +1,13 @@
 package com.paypilotprojectspring.bill.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.paypilotprojectspring.notification.model.Notification;
 import com.paypilotprojectspring.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -53,10 +55,11 @@ public class Bill {
     @Column(name = "bill_loan_type")
     @Enumerated(EnumType.STRING)
     private BillLoanType billLoanType;
-
     @JsonIgnore
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("billId")
     private User user;
+    @OneToMany
+    List<Notification> notificationList;
 }

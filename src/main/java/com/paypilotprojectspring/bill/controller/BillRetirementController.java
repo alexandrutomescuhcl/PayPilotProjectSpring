@@ -27,7 +27,6 @@ public class BillRetirementController {
     public Optional<BillRetirementDTO> getRetirementBillById(@PathVariable Long id){
         return billRetirementService.findById(id);
     }
-
     @PostMapping("/addBill")
     public ResponseEntity<Void> addBill(@RequestBody BillRetirementDTO billRetirementDTO){
         billRetirementService.addBill(billRetirementDTO);
