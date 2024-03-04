@@ -2,7 +2,7 @@ package com.paypilotprojectspring.bank_details.controller;
 
 import com.paypilotprojectspring.bank_details.dto.BankDetailsDTO;
 import com.paypilotprojectspring.bank_details.model.BankDetails;
-import com.paypilotprojectspring.bank_details.serivce.BankDetailsService;
+import com.paypilotprojectspring.bank_details.service.BankDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

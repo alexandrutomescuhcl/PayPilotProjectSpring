@@ -1,4 +1,4 @@
-package com.paypilotprojectspring.bank_details.serivce;
+package com.paypilotprojectspring.bank_details.service;
 
 import com.paypilotprojectspring.bank_details.dto.BankDetailsDTO;
 import com.paypilotprojectspring.bank_details.mapper.BankDetailsMapper;
