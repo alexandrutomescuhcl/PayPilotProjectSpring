@@ -19,23 +19,23 @@ public class BillDebtController {
     private final BillDebtService billDebtService;
 
     @GetMapping("/all")
-    public List<BillDebtDTO> getAllRentBills() {
+    public List<BillDebtDTO> getAllDebtBills() {
         return billDebtService.findAll(String.valueOf(BillCategory.DEBT_PAYMENTS));
     }
 
     @GetMapping("/{id}")
-    public Optional<BillDebtDTO> getRentById(@PathVariable(name = "id") Long id) {
+    public Optional<BillDebtDTO> getDebttById(@PathVariable(name = "id") Long id) {
         return billDebtService.findById(id);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addRentBill(@RequestBody BillDebtDTO billDebtDTO) {
+    public ResponseEntity<String> addDebtBill(@RequestBody BillDebtDTO billDebtDTO) {
         billDebtService.addBill(billDebtDTO);
         return new ResponseEntity<>("Bill was added successfully", HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateRentBill(@PathVariable(name = "id") Long id,
+    public ResponseEntity<String> updateDebtBill(@PathVariable(name = "id") Long id,
                                                  @RequestBody BillDebtDTO billDebtDTO) {
         boolean result = billDebtService.updateBill(billDebtDTO, id);
         if (result) {
@@ -47,7 +47,7 @@ public class BillDebtController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteRentBill(@PathVariable(name = "id") long id) {
+    public ResponseEntity<String> deleteDebtBill(@PathVariable(name = "id") long id) {
 
         if (billDebtService.deleteBill(id))
             return ResponseEntity.status(HttpStatus.OK)
