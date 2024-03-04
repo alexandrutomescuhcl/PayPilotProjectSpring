@@ -1,12 +1,10 @@
 package com.paypilotprojectspring.bill.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.paypilotprojectspring.notification.model.Notification;
 import com.paypilotprojectspring.user.model.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -39,7 +37,7 @@ public class Bill {
     private String notes;
     @Column(name = "is_recurrent")
     private boolean isRecurrent;
-    @Column(name = "slNo")
+    @Column(name = "sl_no")
     private int slNo;
     @Column(name = "month")
     private int month;
@@ -57,9 +55,11 @@ public class Bill {
     @Column(name = "bill_loan_type")
     @Enumerated(EnumType.STRING)
     private BillLoanType billLoanType;
+    @JsonIgnore
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id", referencedColumnName = "id")
+    @MapsId("billId")
     private User user;
     @OneToMany
-    private List<Notification> notificationList;
+    List<Notification> notificationList;
 }
