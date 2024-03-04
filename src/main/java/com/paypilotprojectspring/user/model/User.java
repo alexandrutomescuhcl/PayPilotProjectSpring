@@ -1,10 +1,12 @@
 package com.paypilotprojectspring.user.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.paypilotprojectspring.bill.model.Bill;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -38,4 +40,8 @@ public class User {
     private String bankLfscCode;
     @Column(name = "bank_name")
     private String bankName;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Bill> bills = new HashSet<>();
 }
