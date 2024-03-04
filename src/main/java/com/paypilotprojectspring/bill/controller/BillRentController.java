@@ -1,6 +1,7 @@
 package com.paypilotprojectspring.bill.controller;
 
 import com.paypilotprojectspring.bill.dto.BillRentDTO;
+import com.paypilotprojectspring.bill.model.BillCategory;
 import com.paypilotprojectspring.bill.service.BillRentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class BillRentController {
 
     @GetMapping("/all")
     public List<BillRentDTO> getAllRentBills() {
-        return billRentService.findAll();
+        return billRentService.findAll(String.valueOf(BillCategory.HOUSE_RENT));
     }
 
     @GetMapping("/{id}")
