@@ -3,7 +3,8 @@ package com.paypilotprojectspring.bill.service;
 import com.paypilotprojectspring.bill.dto.BillRentDTO;
 import com.paypilotprojectspring.bill.mapper.BillRentMapper;
 import com.paypilotprojectspring.bill.model.Bill;
-import com.paypilotprojectspring.bill.repository.BillRentRepository;
+import com.paypilotprojectspring.bill.model.BillCategory;
+import com.paypilotprojectspring.bill.repository.BillRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,27 +15,27 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BillRentService {
 
-    private final BillRentRepository billRentRepository;
+    private final BillRepository billRepository;
     private final BillRentMapper billRentMapper;
 
-    public List<BillRentDTO> findAll() {
-        List<Bill> billList = billRentRepository.findAll();
+    public List<BillRentDTO> findAll(String category) {
+        List<Bill> billList = billRepository.findBillsByBillCategory(BillCategory.valueOf(category));
         return billRentMapper.entitiesToDTOs(billList);
     }
 
     public Optional<BillRentDTO> findById(Long id) {
-        Optional<Bill> bill = billRentRepository.findById(id);
+        Optional<Bill> bill = billRepository.findById(id);
         return bill.map(billRentMapper::entityToDTO);
     }
 
     public void addBill(BillRentDTO billRentDTO) {
         Bill bill = billRentMapper.dtoToEntity(billRentDTO);
-        billRentRepository.save(bill);
+        billRepository.save(bill);
     }
 
     public boolean updateBill(BillRentDTO billRentDTO, long id) {
         boolean result;
-        Optional<Bill> optionalBill = billRentRepository.findById(id);
+        Optional<Bill> optionalBill = billRepository.findById(id);
         result = optionalBill.isPresent();
         if (result) {
 
@@ -49,7 +50,7 @@ public class BillRentService {
             existingBillDto.setDueDate(String.valueOf(billRentDTO.getDueDate()));
 
             Bill bill = billRentMapper.dtoToEntity(existingBillDto);
-            billRentRepository.save(bill);
+            billRepository.save(bill);
 
         }
         return result;
@@ -58,11 +59,11 @@ public class BillRentService {
 
     public boolean deleteBill(Long id) {
         boolean result;
-        Optional<Bill> optionalBill = billRentRepository.findById(id);
+        Optional<Bill> optionalBill = billRepository.findById(id);
         result = optionalBill.isPresent();
 
         if (result) {
-            billRentRepository.deleteById(id);
+            billRepository.deleteById(id);
         }
         return result;
     }
