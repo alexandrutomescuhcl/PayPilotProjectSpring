@@ -1,5 +1,6 @@
 package com.paypilotprojectspring.bill.model;
 
+import com.paypilotprojectspring.user.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -54,4 +55,7 @@ public class Bill {
     @Column(name = "bill_loan_type")
     @Enumerated(EnumType.STRING)
     private BillLoanType billLoanType;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id", referencedColumnName = "id")
+    private User user;
 }
