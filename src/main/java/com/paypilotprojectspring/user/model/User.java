@@ -2,6 +2,7 @@ package com.paypilotprojectspring.user.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.paypilotprojectspring.bill.model.Bill;
+import com.paypilotprojectspring.scheduled_payment.model.ScheduledPayment;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -40,8 +41,10 @@ public class User {
     private String bankLfscCode;
     @Column(name = "bank_name")
     private String bankName;
-
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Bill> bills = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ScheduledPayment> scheduledPayments = new HashSet<>();
 }
