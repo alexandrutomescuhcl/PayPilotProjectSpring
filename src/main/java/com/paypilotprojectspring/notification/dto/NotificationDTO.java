@@ -1,5 +1,6 @@
 package com.paypilotprojectspring.notification.dto;
 
+import com.paypilotprojectspring.bill.dto.BillBaseDTO;
 import com.paypilotprojectspring.bill.model.Bill;
 import com.paypilotprojectspring.notification.model.ReminderFrequency;
 import jakarta.persistence.Column;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 public class NotificationDTO {
     private Integer id;
 
-    private Bill bill;
+    private BillBaseDTO bill;
 
     private String message;
 
