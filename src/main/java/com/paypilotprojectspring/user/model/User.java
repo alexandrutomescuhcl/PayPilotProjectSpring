@@ -40,7 +40,6 @@ public class User {
     private String bankLfscCode;
     @Column(name = "bank_name")
     private String bankName;
-
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Bill> bills = new HashSet<>();

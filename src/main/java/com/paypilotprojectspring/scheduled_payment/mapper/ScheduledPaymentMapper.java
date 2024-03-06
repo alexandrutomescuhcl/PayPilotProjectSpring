@@ -1,11 +1,27 @@
 package com.paypilotprojectspring.scheduled_payment.mapper;
 
+import com.paypilotprojectspring.bank_details.repository.BankDetailsRepository;
+import com.paypilotprojectspring.bill.repository.BillRepository;
 import com.paypilotprojectspring.scheduled_payment.dto.ScheduledPaymentDto;
 import com.paypilotprojectspring.scheduled_payment.model.ScheduledPayment;
+import com.paypilotprojectspring.user.repository.UserRepository;
 import org.springframework.stereotype.Component;
+
+import java.util.Random;
 
 @Component
 public class ScheduledPaymentMapper {
+    private final BillRepository billRepository;
+    private final BankDetailsRepository bankDetailsRepository;
+    private final UserRepository userRepository;
+
+    public ScheduledPaymentMapper(BillRepository billRepository,
+                                  BankDetailsRepository bankDetailsRepository, UserRepository userRepository) {
+        this.billRepository = billRepository;
+        this.bankDetailsRepository = bankDetailsRepository;
+        this.userRepository = userRepository;
+    }
+
     public ScheduledPaymentDto entityToDTO(ScheduledPayment entity) {
         if (entity == null) {
             return null;
@@ -15,8 +31,6 @@ public class ScheduledPaymentMapper {
         dto.setId(entity.getId());
         dto.setBillDate(entity.getBillDate());
         dto.setEnabled(entity.getEnabled());
-        dto.setBankDetailsId(entity.getBankDetailsId());
-        dto.setBillId(entity.getBillId());
         dto.setPaymentFrequency(entity.getPaymentFrequency());
         dto.setPaymentMethod(entity.getPaymentMethod());
         dto.setPurposeOfPayment(entity.getPurposeOfPayment());
@@ -24,7 +38,6 @@ public class ScheduledPaymentMapper {
         dto.setPayeeName(entity.getPayeeName());
         dto.setNameOfTheBill(dto.getNameOfTheBill());
         dto.setPayerAccount(entity.getPayerAccount());
-        dto.setUserId(entity.getUserId());
 
         return dto;
     }
@@ -34,12 +47,12 @@ public class ScheduledPaymentMapper {
             return null;
         }
         ScheduledPayment entity = new ScheduledPayment();
+        Random rand = new Random();
 
-        entity.setId(dto.getId());
+        int randomNum = rand.nextInt(1000) + 1;
+        entity.setId(randomNum);
         entity.setBillDate(dto.getBillDate());
         entity.setEnabled(dto.getEnabled());
-        entity.setBankDetailsId(dto.getBankDetailsId());
-        entity.setBillId(dto.getBillId());
         entity.setPaymentFrequency(dto.getPaymentFrequency());
         entity.setPaymentMethod(dto.getPaymentMethod());
         entity.setPurposeOfPayment(dto.getPurposeOfPayment());
@@ -47,7 +60,12 @@ public class ScheduledPaymentMapper {
         entity.setPayeeName(dto.getPayeeName());
         entity.setNameOfTheBill(dto.getNameOfTheBill());
         entity.setPayerAccount(dto.getPayerAccount());
+        entity.setNextPaymentDate(dto.getNextPaymentDate());
+        entity.setAmountToPay(dto.getAmountToPay());
+
         entity.setUserId(dto.getUserId());
+        entity.setBankDetailsId(dto.getBankDetailsId());
+        entity.setBillId(dto.getBillId());
 
         return entity;
     }

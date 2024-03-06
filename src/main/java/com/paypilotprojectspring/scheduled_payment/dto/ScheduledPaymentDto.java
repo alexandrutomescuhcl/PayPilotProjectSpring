@@ -1,6 +1,9 @@
 package com.paypilotprojectspring.scheduled_payment.dto;
 
+import com.paypilotprojectspring.bank_details.model.BankDetails;
+import com.paypilotprojectspring.bill.model.Bill;
 import com.paypilotprojectspring.scheduled_payment.utils.PaymentFrequency;
+import com.paypilotprojectspring.user.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,9 +11,9 @@ import lombok.Setter;
 @Setter
 public class ScheduledPaymentDto {
     private int id;
-    private int userId;
-    private int billId;
     private int bankDetailsId;
+    private Long userId;
+    private Long billId;
     private String nameOfTheBill;
     private String purposeOfPayment;
     private String payeeName;
@@ -20,4 +23,6 @@ public class ScheduledPaymentDto {
     private String paymentMethod;
     private String payerAccount;
     private Boolean enabled;
+    private String nextPaymentDate;
+    private Double amountToPay;
 }

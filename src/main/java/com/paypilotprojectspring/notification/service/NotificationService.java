@@ -47,7 +47,7 @@ public class NotificationService {
         return null;
     }
 
-    @Scheduled(cron = "0 0/1 * 1/1 * ? *")
+    @Scheduled(cron = "0 0/1 * * * ?")
     public void verifyUpcomingBills() {
         LocalDateTime now = LocalDateTime.now();
         List<Bill> billsList = (List<Bill>) billRepository.findAll();

@@ -8,6 +8,7 @@ import com.paypilotprojectspring.bill.service.BillGenericService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -26,4 +27,14 @@ public class BillGenericController {
                 billRequestDTO.getDateTo(),
                 BillStatus.valueOf(billRequestDTO.getBillStatus()));
     }
+
+    @GetMapping("/matching")
+    public List<Bill> getAllMatchingBills(@RequestParam String billCategory,
+                                                          @RequestParam LocalDate dateFrom,
+                                                          @RequestParam LocalDate dateTo) {
+        return billGenericService.getAllMatchingBills(BillCategory.valueOf(billCategory),
+                dateFrom,
+                dateTo);
+    }
+
 }
