@@ -60,6 +60,7 @@ public class BillRetirementMapper {
         billEntity.setSlNo(billDTO.getSlNo());
         billEntity.setMonth(billDTO.getMonth());
         billEntity.setAmount(billDTO.getAmount());
+        billEntity.setReminderSettings(reminderSettingsMapper.toEntity(billDTO.getReminderSettingsDTO()));
 
         return billEntity;
     }

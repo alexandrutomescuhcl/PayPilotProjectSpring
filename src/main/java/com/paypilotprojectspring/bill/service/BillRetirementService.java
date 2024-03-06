@@ -7,6 +7,7 @@ import com.paypilotprojectspring.bill.mapper.BillRetirementMapper;
 import com.paypilotprojectspring.bill.model.Bill;
 import com.paypilotprojectspring.bill.model.BillCategory;
 import com.paypilotprojectspring.bill.repository.BillRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,10 +31,12 @@ public class BillRetirementService {
         return bill.map(billRetirementMapper::entityToDTO);
     }
 
+    @Transactional
     public void addBill(BillRetirementDTO billRetirementDTO){
         billRepository.save(billRetirementMapper.dtoToEntity(billRetirementDTO));
     }
 
+    @Transactional
     public boolean updateBill(BillRetirementDTO billRetirementDTO, Long id){
         Optional<Bill> bill = billRepository.findByBillId(id);
         if(bill.isPresent()){
@@ -43,6 +46,7 @@ public class BillRetirementService {
             existingBill.setMonth(billRetirementDTO.getMonth());
             existingBill.setSlNo(billRetirementDTO.getSlNo());
             existingBill.setAmount(billRetirementDTO.getAmount());
+            existingBill.setReminderSettingsDTO(billRetirementDTO.getReminderSettingsDTO());
             billRepository.save(billRetirementMapper.dtoToEntity(existingBill));
             return true;
         }
