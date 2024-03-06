@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 @Table(schema = "SPRING", name = "REMINDER_SETTINGS")
 public class ReminderSettings {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "active")

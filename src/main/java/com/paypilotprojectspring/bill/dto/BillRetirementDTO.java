@@ -1,5 +1,6 @@
 package com.paypilotprojectspring.bill.dto;
 
+import com.paypilotprojectspring.notification.dto.ReminderSettingsDTO;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ public class BillRetirementDTO {
     private int slNo;
     private int month;
     private double amount;
+    private ReminderSettingsDTO reminderSettingsDTO;
 
 
 }

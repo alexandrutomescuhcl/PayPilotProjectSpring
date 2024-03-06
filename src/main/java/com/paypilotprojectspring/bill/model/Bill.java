@@ -17,6 +17,8 @@ import java.time.LocalDate;
 public class Bill {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "bill_id")
     private Long billId;
 
     @Column(name = "bill_name")
@@ -73,7 +75,7 @@ public class Bill {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private ReminderSettings reminderSettings;
 
 }
