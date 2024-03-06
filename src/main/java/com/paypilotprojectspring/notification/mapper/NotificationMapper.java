@@ -13,11 +13,7 @@ public class NotificationMapper {
             NotificationDTO notificationDTO = new NotificationDTO();
             notificationDTO.setId(notification.getId());
             notificationDTO.setBill(notification.getBill());
-            notificationDTO.setReminderFrequency(notification.getReminderFrequency());
-            notificationDTO.setReminderStartDate(notification.getReminderStartDate());
             notificationDTO.setMessage(notification.getMessage());
-            notificationDTO.setNotificationByEmail(notification.getNotificationByEmail());
-            notificationDTO.setNotificationInApp(notification.getNotificationInApp());
             return notificationDTO;
         }
     }
@@ -28,11 +24,7 @@ public class NotificationMapper {
         } else {
             Notification notification = new Notification();
             notification.setBill(notificationDTO.getBill());
-            notification.setReminderFrequency(notificationDTO.getReminderFrequency());
-            notification.setReminderStartDate(notificationDTO.getReminderStartDate());
             notification.setMessage(notificationDTO.getMessage());
-            notification.setNotificationByEmail(notificationDTO.getNotificationByEmail());
-            notification.setNotificationInApp(notificationDTO.getNotificationInApp());
             return notification;
         }
     }

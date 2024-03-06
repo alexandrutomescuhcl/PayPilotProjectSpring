@@ -1,6 +1,5 @@
 package com.paypilotprojectspring.notification.dto;
 
-import com.paypilotprojectspring.bill.model.Bill;
 import com.paypilotprojectspring.notification.model.ReminderFrequency;
 import jakarta.persistence.Column;
 import lombok.*;
@@ -12,11 +11,18 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class NotificationDTO {
+public class ReminderSettingsDTO {
     private Integer id;
 
-    private Bill bill;
+    private Boolean active;
+
+    private ReminderFrequency reminderFrequency;
+
+    private LocalDateTime reminderStartDate;
 
     private String message;
 
+    private Boolean notificationByEmail;
+
+    private Boolean notificationInApp;
 }
