@@ -37,6 +37,9 @@ public class ScheduledPayment {
     @Column(name = "bill_date")
     private String billDate;
 
+    @Column(name = "next_payment_date")
+    private String nextPaymentDate;
+
     @Column(name = "payment_frequency")
     @Enumerated(EnumType.STRING)
     private PaymentFrequency paymentFrequency;
@@ -50,7 +53,19 @@ public class ScheduledPayment {
     @Column(name = "enabled")
     private Boolean enabled;
 
-    @JsonIgnore
+    @Column(name = "bank_details_id")
+    private int bankDetailsId;
+
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "bill_id")
+    private Long billId;
+
+    @Column(name = "amount_to_pay")
+    private Double amountToPay;
+
+/*    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -61,5 +76,5 @@ public class ScheduledPayment {
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private BankDetails bankDetails;
+    private BankDetails bankDetails;*/
 }

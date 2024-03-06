@@ -43,9 +43,9 @@ public class ScheduledPaymentMapper {
         dto.setNameOfTheBill(dto.getNameOfTheBill());
         dto.setPayerAccount(entity.getPayerAccount());
 
-        dto.setUserId(entity.getUser().getId());
-        dto.setBankDetailsId(entity.getBankDetails().getBankDetailsId());
-        dto.setBillId(entity.getUser().getId());
+//        dto.setUserId(entity.getUser().getId());
+//        dto.setBankDetailsId(entity.getBankDetails().getBankDetailsId());
+//        dto.setBillId(entity.getUser().getId());
         return dto;
     }
 
@@ -65,6 +65,10 @@ public class ScheduledPaymentMapper {
         entity.setPayeeName(dto.getPayeeName());
         entity.setNameOfTheBill(dto.getNameOfTheBill());
         entity.setPayerAccount(dto.getPayerAccount());
+
+        entity.setUserId(dto.getUserId());
+        entity.setBankDetailsId(dto.getBankDetailsId());
+        entity.setBillId(dto.getBillId());
 
 //        Optional<Bill> targetBill = billRepository.findByBillId(dto.getBillId());
 //        if (targetBill.isPresent()) {

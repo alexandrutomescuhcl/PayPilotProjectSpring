@@ -8,7 +8,9 @@ import com.paypilotprojectspring.bill.repository.BillRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -46,5 +48,26 @@ public class BillGenericService {
         }
         return billOverview;
     }
+
+    public List<Bill> getAllMatchingBills(BillCategory billCategory,
+                                          LocalDate dateFrom,
+                                          LocalDate dateTo) {
+        List<Bill> matchingBills = new ArrayList<>();
+        for (Bill bill : billRepository.findAll()) {
+
+            boolean matchesCategory = bill.getBillCategory().equals(billCategory)
+                                        || billCategory.equals(BillCategory.ALL);
+            boolean matchesFromDate = bill.getBillDateFrom().isEqual(dateFrom)
+                                        || bill.getBillDateFrom().isAfter(dateFrom);
+            boolean matchesAfterDate= bill.getBillDateTo().equals(dateTo)
+                                        || bill.getBillDateFrom().isBefore(dateTo);
+
+            if (matchesCategory && matchesFromDate && matchesAfterDate) {
+                matchingBills.add(bill);
+            }
+        }
+
+        return matchingBills;
     }
+}
 

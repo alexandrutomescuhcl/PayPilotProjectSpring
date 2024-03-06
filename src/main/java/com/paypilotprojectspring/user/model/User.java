@@ -41,10 +41,10 @@ public class User {
     private String bankLfscCode;
     @Column(name = "bank_name")
     private String bankName;
-    @JsonIgnore
+    /*@JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Bill> bills = new HashSet<>();
-    @JsonIgnore
+    private Set<Bill> bills = new HashSet<>();*/
+   /* @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ScheduledPayment> scheduledPayments = new HashSet<>();
+    private Set<ScheduledPayment> scheduledPayments = new HashSet<>();*/
 }
