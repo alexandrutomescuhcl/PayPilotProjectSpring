@@ -5,6 +5,7 @@ import com.paypilotprojectspring.bill.mapper.BillRentMapper;
 import com.paypilotprojectspring.bill.model.Bill;
 import com.paypilotprojectspring.bill.model.BillCategory;
 import com.paypilotprojectspring.bill.repository.BillRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,11 +29,12 @@ public class BillRentService {
         return bill.map(billRentMapper::entityToDTO);
     }
 
+    @Transactional
     public void addBill(BillRentDTO billRentDTO) {
         Bill bill = billRentMapper.dtoToEntity(billRentDTO);
         billRepository.save(bill);
     }
-
+    @Transactional
     public boolean updateBill(BillRentDTO billRentDTO, long id) {
         boolean result;
         Optional<Bill> optionalBill = billRepository.findById(id);
@@ -48,6 +50,7 @@ public class BillRentService {
             existingBillDto.setTo(billRentDTO.getTo());
             existingBillDto.setAmount(billRentDTO.getAmount());
             existingBillDto.setDueDate(String.valueOf(billRentDTO.getDueDate()));
+            existingBillDto.setReminderSettingsDTO(billRentDTO.getReminderSettingsDTO());
 
             Bill bill = billRentMapper.dtoToEntity(existingBillDto);
             billRepository.save(bill);
