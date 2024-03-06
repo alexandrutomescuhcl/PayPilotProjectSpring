@@ -4,7 +4,9 @@ import com.paypilotprojectspring.bill.dto.BillBaseDTO;
 import com.paypilotprojectspring.bill.model.Bill;
 import com.paypilotprojectspring.notification.mapper.ReminderSettingsMapper;
 import com.paypilotprojectspring.notification.model.ReminderSettings;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BillBaseMapper {
     private final ReminderSettingsMapper reminderSettingsMapper;
 
