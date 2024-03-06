@@ -24,5 +24,4 @@ public class Notification {
 
     @Column(name = "message")
     private String message;
-
 }
