@@ -21,8 +21,6 @@ import java.util.Optional;
 public class BillGroceriesService {
     private final BillRepository billRepository;
     private final BillGroceriesMapper billGroceriesMapper;
-    private final ReminderRepository reminderRepository;
-    private final ReminderSettingsMapper reminderSettingsMapper;
 
     public List<BillGroceriesDTO> findAll(String category){
         List<Bill> billList = billRepository.findBillsByBillCategory(BillCategory.valueOf(category));
@@ -45,6 +43,7 @@ public class BillGroceriesService {
         billRepository.save(billGroceriesMapper.dtoToEntity(billGroceriesDTO));
     }
 
+    @Transactional
     public boolean updateBill(BillGroceriesDTO billGroceriesDTO, Long id){
         Optional<Bill> bill = billRepository.findByBillId(id);
         if(bill.isPresent()){
@@ -54,6 +53,7 @@ public class BillGroceriesService {
             existingBill.setMonth(billGroceriesDTO.getMonth());
             existingBill.setSlNo(billGroceriesDTO.getSlNo());
             existingBill.setAmount(billGroceriesDTO.getAmount());
+            existingBill.setReminderSettingsDTO(billGroceriesDTO.getReminderSettingsDTO());
             billRepository.save(billGroceriesMapper.dtoToEntity(existingBill));
             return true;
         }
