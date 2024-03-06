@@ -24,7 +24,6 @@ public class UserPrincipal implements UserDetails {
     private Integer failedLoginAttempts;
 
     private Collection<? extends GrantedAuthority> authorities;
-    private boolean acceptedGdpr;
 
     @Override
     public String getUsername() {

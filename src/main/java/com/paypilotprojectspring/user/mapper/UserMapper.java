@@ -26,6 +26,10 @@ public class UserMapper {
         userDTO.setBankAccountNumber(user.getBankAccountNumber());
         userDTO.setBankLfscCode(user.getBankLfscCode());
         userDTO.setBankName(user.getBankName());
+        userDTO.setActive(user.isActive());
+        userDTO.setAccountLocked(user.isAccountLocked());
+        userDTO.setRoles(user.getRoles());
+
 
         return userDTO;
     }

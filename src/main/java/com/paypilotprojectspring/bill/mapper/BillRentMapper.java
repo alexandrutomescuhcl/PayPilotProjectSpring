@@ -19,7 +19,7 @@ public class BillRentMapper {
         }
 
         BillRentDTO billRentDTO = new BillRentDTO();
-        billRentDTO.setBillId(bill.getBillId());
+        billRentDTO.setBillId(bill.getId());
         billRentDTO.setBillName(bill.getBillName());
         billRentDTO.setBillCategory(bill.getBillCategory().toString());
         billRentDTO.setSlNo(bill.getSlNo());
@@ -50,7 +50,7 @@ public class BillRentMapper {
         }
         Bill billEntity = new Bill();
 
-        billEntity.setBillId(billDTO.getBillId());
+        billEntity.setId(billDTO.getBillId());
         billEntity.setBillName(billDTO.getBillName());
         billEntity.setBillCategory(BillCategory.valueOf(billDTO.getBillCategory()));
         billEntity.setSlNo(billDTO.getSlNo());

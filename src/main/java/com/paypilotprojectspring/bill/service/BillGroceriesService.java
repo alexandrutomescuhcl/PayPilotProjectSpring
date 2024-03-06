@@ -40,7 +40,7 @@ public class BillGroceriesService {
     }
 
     public boolean updateBill(BillGroceriesDTO billGroceriesDTO, Long id){
-        Optional<Bill> bill = billRepository.findByBillId(id);
+        Optional<Bill> bill = billRepository.findById(id);
         if(bill.isPresent()){
             BillGroceriesDTO existingBill = billGroceriesMapper.entityToDTO(bill.get());
             existingBill.setBillName(billGroceriesDTO.getBillName());

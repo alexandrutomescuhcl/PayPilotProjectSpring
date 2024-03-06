@@ -18,7 +18,7 @@ import java.util.List;
 public class Bill {
 
     @Id
-    private Long billId;
+    private Long id;
     @Column(name = "bill_name")
     private String billName;
     @Column(name = "bill_category")
@@ -59,8 +59,9 @@ public class Bill {
     @JsonIgnore
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bill_id")
+    @JoinColumn(name = "user_id")
     private User user;
+
     @OneToMany
     List<Notification> notificationList;
 }

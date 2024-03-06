@@ -14,5 +14,5 @@ import java.util.Optional;
 public interface BillRepository extends CrudRepository<Bill, Long> {
 
     List<Bill> findBillsByBillCategory(BillCategory category);
-    Optional<Bill> findByBillId(Long id);
+    Optional<Bill> findById(Long id);
 }

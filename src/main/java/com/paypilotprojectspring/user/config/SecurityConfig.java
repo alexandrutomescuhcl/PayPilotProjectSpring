@@ -4,6 +4,7 @@ import com.paypilotprojectspring.user.config.security.CustomUserDetailsService;
 import com.paypilotprojectspring.user.config.security.RestAuthenticationEntryPoint;
 import com.paypilotprojectspring.user.config.security.TokenAuthenticationFilter;
 import com.paypilotprojectspring.user.config.security.TokenProvider;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
@@ -63,26 +65,35 @@ public class SecurityConfig extends AbstractHttpConfigurer<SecurityConfig, HttpS
     @Bean
     protected SecurityFilterChain httpBean(HttpSecurity http) throws Exception {
         http
-                .securityMatcher("/api/**")
+                .cors()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .csrf()
+                .disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new RestAuthenticationEntryPoint());
+        http
+                .securityMatcher("/authentication/**")
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().hasRole("ADMIN")
                 )
                 .httpBasic(withDefaults());
-
         http.addFilterBefore(new TokenAuthenticationFilter(tokenProvider, handlerExceptionResolver),
                         UsernamePasswordAuthenticationFilter.class);
 
 
-//        http.authorizeHttpRequests((authorize) ->
-//            authorize
-//            .requestMatchers("/authentication/**").permitAll()
-//            .requestMatchers("/v2/api-docs/**").permitAll()
-//            .requestMatchers("/swagger-ui/**").permitAll()
-//            .requestMatchers("/swagger-resources/**").permitAll()
-//            .requestMatchers("/swagger-ui.html").permitAll()
-//            .requestMatchers("/webjars/**").permitAll()
-//            .anyRequest()
-//            .authenticated());
+////        http.authorizeHttpRequests((authorize) ->
+////            authorize
+////            .requestMatchers("/authentication/**").permitAll()
+////            .requestMatchers("/v2/api-docs/**").permitAll()
+////            .requestMatchers("/swagger-ui/**").permitAll()
+////            .requestMatchers("/swagger-resources/**").permitAll()
+////            .requestMatchers("/swagger-ui.html").permitAll()
+////            .requestMatchers("/webjars/**").permitAll()
+////            .anyRequest()
+////            .authenticated());
 
      return http.build();
     }
@@ -92,7 +103,7 @@ public class SecurityConfig extends AbstractHttpConfigurer<SecurityConfig, HttpS
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().authenticated()
                 )
-                .formLogin(withDefaults());
+                .httpBasic(withDefaults());
         return http.build();
     }
 

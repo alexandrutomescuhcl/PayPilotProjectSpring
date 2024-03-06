@@ -17,7 +17,7 @@ public class BillGroceriesMapper {
         }
         BillGroceriesDTO billDTO = new BillGroceriesDTO();
 
-        billDTO.setBillId(bill.getBillId());
+        billDTO.setBillId(bill.getId());
         billDTO.setBillName(bill.getBillName());
         billDTO.setBillCategory(bill.getBillCategory().toString());
         billDTO.setSlNo(bill.getSlNo());
@@ -44,7 +44,7 @@ public class BillGroceriesMapper {
         }
         Bill billEntity = new Bill();
 
-        billEntity.setBillId(billDTO.getBillId());
+        billEntity.setId(billDTO.getBillId());
         billEntity.setBillName(billDTO.getBillName());
         billEntity.setBillCategory(BillCategory.valueOf(billDTO.getBillCategory()));
         billEntity.setSlNo(billDTO.getSlNo());

@@ -22,6 +22,5 @@ public class Role {
     @Column
     private String name;
 
-    @OneToMany
-    List<User> users;
+
 }

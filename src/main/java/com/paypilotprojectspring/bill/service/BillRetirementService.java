@@ -35,7 +35,7 @@ public class BillRetirementService {
     }
 
     public boolean updateBill(BillRetirementDTO billRetirementDTO, Long id){
-        Optional<Bill> bill = billRepository.findByBillId(id);
+        Optional<Bill> bill = billRepository.findById(id);
         if(bill.isPresent()){
             BillRetirementDTO existingBill = billRetirementMapper.entityToDTO(bill.get());
             existingBill.setBillName(billRetirementDTO.getBillName());

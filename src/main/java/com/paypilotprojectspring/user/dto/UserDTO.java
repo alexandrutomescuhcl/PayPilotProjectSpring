@@ -1,11 +1,13 @@
 package com.paypilotprojectspring.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.paypilotprojectspring.bill.model.Bill;
 import com.paypilotprojectspring.user.model.Role;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -21,7 +23,7 @@ public class UserDTO {
     private String password;
     private String address;
     private String phoneNumber;
-    private Role roles;
+    private List<Role> roles;
     private Integer panId;
     private String bankAccountNumber;
     private String bankLfscCode;
@@ -30,5 +32,7 @@ public class UserDTO {
     private boolean isFirstLogin;
     private int failedLoginAttempts;
     private boolean isAccountLocked;
+    private Set<Bill> billSet;
+
 
 }

@@ -20,7 +20,7 @@ public class BillDebtMapper {
         }
         BillDebtDTO billDTO = new BillDebtDTO();
 
-        billDTO.setBillId(bill.getBillId());
+        billDTO.setBillId(bill.getId());
         billDTO.setBillName(bill.getBillName());
         billDTO.setBillCategory(bill.getBillCategory().toString());
         billDTO.setAmount(bill.getAmount());
@@ -53,7 +53,7 @@ public class BillDebtMapper {
         }
         Bill billEntity = new Bill();
 
-        billEntity.setBillId(billDTO.getBillId());
+        billEntity.setId(billDTO.getBillId());
         billEntity.setBillName(billDTO.getBillName());
         billEntity.setBillCategory(BillCategory.valueOf(billDTO.getBillCategory()));
         billEntity.setAmount(billDTO.getAmount());

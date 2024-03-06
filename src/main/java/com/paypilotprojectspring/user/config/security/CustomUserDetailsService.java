@@ -19,6 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    return userToUserPrincipalMapper.map(userMapper.dtoToEntity(userService.getByEmail(email)));
+    return userToUserPrincipalMapper.mapUserToUserDetails(
+        userMapper.dtoToEntity(userService.getByEmail(email)));
   }
 }
