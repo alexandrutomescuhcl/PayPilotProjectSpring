@@ -59,9 +59,8 @@ public class Bill {
     @JsonIgnore
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("billId")
+    @JoinColumn(name = "bill_id")
     private User user;
-
     @OneToMany
     List<Notification> notificationList;
 }

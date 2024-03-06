@@ -46,7 +46,6 @@ public class BillGroceriesMapper {
 
         billEntity.setBillId(billDTO.getBillId());
         billEntity.setBillName(billDTO.getBillName());
-//        billEntity.setBillCategory(BillCategory.valueOf(billDTO.getBillCategory())); //until the creation of all DB tables
         billEntity.setBillCategory(BillCategory.valueOf(billDTO.getBillCategory()));
         billEntity.setSlNo(billDTO.getSlNo());
         billEntity.setMonth(billDTO.getMonth());
