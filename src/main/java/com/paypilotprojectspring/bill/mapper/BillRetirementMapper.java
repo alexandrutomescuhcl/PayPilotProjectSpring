@@ -3,6 +3,7 @@ package com.paypilotprojectspring.bill.mapper;
 import com.paypilotprojectspring.bill.dto.BillRetirementDTO;
 import com.paypilotprojectspring.bill.model.Bill;
 import com.paypilotprojectspring.bill.model.BillCategory;
+import com.paypilotprojectspring.notification.mapper.ReminderSettingsMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import java.util.List;
 
 @Component
 public class BillRetirementMapper {
+
+    private ReminderSettingsMapper reminderSettingsMapper;
     public BillRetirementDTO entityToDTO(Bill bill) {
         if (bill == null) {
             return null;
@@ -26,6 +29,7 @@ public class BillRetirementMapper {
         billDTO.setSlNo(bill.getSlNo());
         billDTO.setMonth(bill.getMonth());
         billDTO.setAmount(bill.getAmount());
+        billDTO.setReminderSettingsDTO(reminderSettingsMapper.toDTO(bill.getReminderSettings()));
 
         return billDTO;
     }
@@ -56,6 +60,7 @@ public class BillRetirementMapper {
         billEntity.setSlNo(billDTO.getSlNo());
         billEntity.setMonth(billDTO.getMonth());
         billEntity.setAmount(billDTO.getAmount());
+        billEntity.setReminderSettings(reminderSettingsMapper.toEntity(billDTO.getReminderSettingsDTO()));
 
         return billEntity;
     }

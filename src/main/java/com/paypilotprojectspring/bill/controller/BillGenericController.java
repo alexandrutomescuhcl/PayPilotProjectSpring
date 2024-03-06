@@ -6,10 +6,7 @@ import com.paypilotprojectspring.bill.model.BillCategory;
 import com.paypilotprojectspring.bill.model.BillStatus;
 import com.paypilotprojectspring.bill.service.BillGenericService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -17,11 +14,12 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/bill")
+@CrossOrigin("http://localhost:4200/")
 public class BillGenericController {
 
     private final BillGenericService billGenericService;
 
-    @GetMapping
+    @PostMapping
     public Map<BillCategory, Integer> displayNumberOfBillsForEachType(@RequestBody BillRequestDTO billRequestDTO){
         return billGenericService.displayNumberOfBillsForEachType(BillCategory.valueOf(billRequestDTO.getBillCategory()),
                 billRequestDTO.getDateFrom(),
