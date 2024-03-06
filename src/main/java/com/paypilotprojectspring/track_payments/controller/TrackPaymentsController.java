@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/track-payment")
+@RequestMapping("/track-payments")
 public class TrackPaymentsController {
 
     private final TrackPaymentsService trackPaymentsService;
