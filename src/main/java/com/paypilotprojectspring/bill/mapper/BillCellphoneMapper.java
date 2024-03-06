@@ -28,6 +28,7 @@ public class BillCellphoneMapper {
                 .from(String.valueOf(bill.getBillDateFrom()))
                 .to(String.valueOf(bill.getBillDateTo()))
                 .dueDate(String.valueOf(bill.getDueDate()))
+                .reminderSettings(bill.getReminderSettings())
                 .build();
     }
 
@@ -57,6 +58,7 @@ public class BillCellphoneMapper {
         bill.setBillDateFrom(LocalDate.parse(dto.getFrom()));
         bill.setBillDateTo(LocalDate.parse(dto.getTo()));
         bill.setDueDate(LocalDate.parse(dto.getDueDate()));
+        bill.setReminderSettings(dto.getReminderSettings());
 
         return bill;
     }
