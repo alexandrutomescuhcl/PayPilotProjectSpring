@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -30,8 +31,7 @@ public class User {
     private String address;
     @Column(name = "phone_number")
     private String phoneNumber;
-    @Column(name = "roles")
-    private String roles;
+
     @Column(name = "pan_id")
     private Integer panId;
     @Column(name = "bank_account_number")
@@ -44,4 +44,20 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Bill> bills = new HashSet<>();
+
+    @ManyToOne
+    private Role roles;
+
+    @Column(name = "active")
+    private boolean active;
+
+    @Column(name = "first_login")
+    private boolean isFirstLogin;
+
+    @Column(name = "failed_login_attempts")
+    private int failedLoginAttempts;
+
+    @Column(name = "is_account_locked")
+    private boolean isAccountLocked;
+
 }

@@ -14,15 +14,21 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
-    private final UserMapper userMapper;
+  private final UserRepository userRepository;
+  private final UserMapper userMapper;
 
-    public List<UserDTO> getAll() {
-        List<User> userList = userRepository.findAll();
-        return userMapper.entitiesToDTOs(userList);
-    }
-    public Optional<UserDTO> getById(Long id){
-        Optional<User> user = userRepository.findById(id);
-        return user.map(userMapper::entityToDTO);
-    }
+  public List<UserDTO> getAll() {
+    List<User> userList = userRepository.findAll();
+    return userMapper.entitiesToDTOs(userList);
+  }
+
+  public Optional<UserDTO> getById(Long id) {
+    Optional<User> user = userRepository.findById(id);
+    return user.map(userMapper::entityToDTO);
+  }
+
+  public UserDTO getByEmail(String email) {
+    Optional<User> user = userRepository.findByEmail(email);
+    return userMapper.entityToDTO(user.get());
+  }
 }
