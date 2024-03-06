@@ -52,18 +52,20 @@ public class NotificationService {
         LocalDateTime now = LocalDateTime.now();
         List<Bill> billsList = (List<Bill>) billRepository.findAll();
         for (Bill bill : billsList) {
-            ReminderSettings reminderSettings = bill.getReminderSettings();
-            if (reminderSettings.getActive() && reminderSettings.getReminderStartDate().isBefore(now)) {
-                Duration duration = Duration.between(reminderSettings.getReminderStartDate(), now);
-                long daysSinceStart = duration.toDays();
-                if (reminderSettings.getReminderFrequency().equals(ReminderFrequency.DAILY) ||
-                        (reminderSettings.getReminderFrequency().equals(ReminderFrequency.WEEKLY) && daysSinceStart % 7 == 0) ||
-                        (reminderSettings.getReminderFrequency().equals(ReminderFrequency.BIMONTHLY) && daysSinceStart % 14 == 0) ||
-                        (reminderSettings.getReminderFrequency().equals(ReminderFrequency.MONTHLY) && daysSinceStart % 30 == 0)) {
-                    Notification notification = new Notification();
-                    notification.setBill(bill);
-                    notification.setMessage(reminderSettings.getMessage());
-                    notificationRepository.save(notification);
+            if (bill.getReminderSettings() != null) {
+                ReminderSettings reminderSettings = bill.getReminderSettings();
+                if (reminderSettings.getActive() && reminderSettings.getReminderStartDate().isBefore(now)) {
+                    Duration duration = Duration.between(reminderSettings.getReminderStartDate(), now);
+                    long daysSinceStart = duration.toDays();
+                    if (reminderSettings.getReminderFrequency().equals(ReminderFrequency.DAILY) ||
+                            (reminderSettings.getReminderFrequency().equals(ReminderFrequency.WEEKLY) && daysSinceStart % 7 == 0) ||
+                            (reminderSettings.getReminderFrequency().equals(ReminderFrequency.BIMONTHLY) && daysSinceStart % 14 == 0) ||
+                            (reminderSettings.getReminderFrequency().equals(ReminderFrequency.MONTHLY) && daysSinceStart % 30 == 0)) {
+                        Notification notification = new Notification();
+                        notification.setBill(bill);
+                        notification.setMessage(reminderSettings.getMessage());
+                        notificationRepository.save(notification);
+                    }
                 }
             }
         }
