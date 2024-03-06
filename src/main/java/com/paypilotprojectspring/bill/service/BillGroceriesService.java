@@ -7,6 +7,9 @@ import com.paypilotprojectspring.bill.mapper.BillGroceriesMapper;
 import com.paypilotprojectspring.bill.model.Bill;
 import com.paypilotprojectspring.bill.model.BillCategory;
 import com.paypilotprojectspring.bill.repository.BillRepository;
+import com.paypilotprojectspring.notification.mapper.ReminderSettingsMapper;
+import com.paypilotprojectspring.notification.repository.ReminderRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,10 +38,12 @@ public class BillGroceriesService {
             throw new BillException("Bill id does not exist.");
     }
 
+    @Transactional
     public void addBill(BillGroceriesDTO billGroceriesDTO){
         billRepository.save(billGroceriesMapper.dtoToEntity(billGroceriesDTO));
     }
 
+    @Transactional
     public boolean updateBill(BillGroceriesDTO billGroceriesDTO, Long id){
         Optional<Bill> bill = billRepository.findByBillId(id);
         if(bill.isPresent()){
@@ -48,6 +53,7 @@ public class BillGroceriesService {
             existingBill.setMonth(billGroceriesDTO.getMonth());
             existingBill.setSlNo(billGroceriesDTO.getSlNo());
             existingBill.setAmount(billGroceriesDTO.getAmount());
+            existingBill.setReminderSettingsDTO(billGroceriesDTO.getReminderSettingsDTO());
             billRepository.save(billGroceriesMapper.dtoToEntity(existingBill));
             return true;
         }

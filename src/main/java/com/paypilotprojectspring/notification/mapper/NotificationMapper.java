@@ -1,23 +1,26 @@
 package com.paypilotprojectspring.notification.mapper;
 
+import com.paypilotprojectspring.bill.mapper.BillBaseMapper;
 import com.paypilotprojectspring.notification.dto.NotificationDTO;
 import com.paypilotprojectspring.notification.model.Notification;
 import org.springframework.stereotype.Component;
 
 @Component
 public class NotificationMapper {
+    private final BillBaseMapper billBaseMapper;
+
+    public NotificationMapper(BillBaseMapper billBaseMapper) {
+        this.billBaseMapper = billBaseMapper;
+    }
+
     public NotificationDTO toDTO(Notification notification) {
         if (notification == null) {
             return null;
         } else {
             NotificationDTO notificationDTO = new NotificationDTO();
             notificationDTO.setId(notification.getId());
-            notificationDTO.setBill(notification.getBill());
-            notificationDTO.setReminderFrequency(notification.getReminderFrequency());
-            notificationDTO.setReminderStartDate(notification.getReminderStartDate());
+            notificationDTO.setBill(billBaseMapper.toDTO(notification.getBill()));
             notificationDTO.setMessage(notification.getMessage());
-            notificationDTO.setNotificationByEmail(notification.getNotificationByEmail());
-            notificationDTO.setNotificationInApp(notification.getNotificationInApp());
             return notificationDTO;
         }
     }
@@ -27,12 +30,8 @@ public class NotificationMapper {
             return null;
         } else {
             Notification notification = new Notification();
-            notification.setBill(notificationDTO.getBill());
-            notification.setReminderFrequency(notificationDTO.getReminderFrequency());
-            notification.setReminderStartDate(notificationDTO.getReminderStartDate());
+            notification.setBill(billBaseMapper.toEntity(notificationDTO.getBill()));
             notification.setMessage(notificationDTO.getMessage());
-            notification.setNotificationByEmail(notificationDTO.getNotificationByEmail());
-            notification.setNotificationInApp(notificationDTO.getNotificationInApp());
             return notification;
         }
     }

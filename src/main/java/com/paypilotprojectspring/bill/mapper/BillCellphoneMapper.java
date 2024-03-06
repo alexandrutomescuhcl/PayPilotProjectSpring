@@ -3,6 +3,7 @@ package com.paypilotprojectspring.bill.mapper;
 import com.paypilotprojectspring.bill.dto.BillCellphoneDTO;
 import com.paypilotprojectspring.bill.model.Bill;
 import com.paypilotprojectspring.bill.model.BillCategory;
+import com.paypilotprojectspring.notification.mapper.ReminderSettingsMapper;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -12,6 +13,12 @@ import java.util.List;
 
 @Component
 public class BillCellphoneMapper {
+
+    private ReminderSettingsMapper reminderSettingsMapper;
+
+    public BillCellphoneMapper(ReminderSettingsMapper reminderSettingsMapper) {
+        this.reminderSettingsMapper = reminderSettingsMapper;
+    }
 
     public BillCellphoneDTO entityToDTO(Bill bill) {
         if (bill == null) {
@@ -28,6 +35,7 @@ public class BillCellphoneMapper {
                 .from(String.valueOf(bill.getBillDateFrom()))
                 .to(String.valueOf(bill.getBillDateTo()))
                 .dueDate(String.valueOf(bill.getDueDate()))
+                .reminderSettings(reminderSettingsMapper.toDTO(bill.getReminderSettings()))
                 .build();
     }
 
@@ -57,6 +65,7 @@ public class BillCellphoneMapper {
         bill.setBillDateFrom(LocalDate.parse(dto.getFrom()));
         bill.setBillDateTo(LocalDate.parse(dto.getTo()));
         bill.setDueDate(LocalDate.parse(dto.getDueDate()));
+        bill.setReminderSettings(reminderSettingsMapper.toEntity(dto.getReminderSettings()));
 
         return bill;
     }

@@ -15,11 +15,12 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/bill")
+@CrossOrigin("http://localhost:4200/")
 public class BillGenericController {
 
     private final BillGenericService billGenericService;
 
-    @GetMapping
+    @PostMapping
     public Map<BillCategory, Integer> displayNumberOfBillsForEachType(@RequestBody BillRequestDTO billRequestDTO){
         return billGenericService.displayNumberOfBillsForEachType(BillCategory.valueOf(billRequestDTO.getBillCategory()),
                 billRequestDTO.getDateFrom(),

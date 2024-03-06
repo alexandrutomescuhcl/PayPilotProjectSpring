@@ -1,23 +1,30 @@
 package com.paypilotprojectspring.bill.dto;
 
+import com.paypilotprojectspring.bill.model.BillCategory;
 import com.paypilotprojectspring.notification.dto.ReminderSettingsDTO;
-import com.paypilotprojectspring.notification.model.ReminderSettings;
 import lombok.*;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BillCellphoneDTO {
-    private long billId;
+public class BillBaseDTO {
+
+    private Long billId;
+
     private String billName;
-    private String billCategory;
+
+    private BillCategory billCategory;
+
     private double amount;
-    private int slNo;
-    private int month;
-    private String from;
-    private String to;
-    private String dueDate;
+
+    private LocalDate billDateFrom;
+
+    private LocalDate billDateTo;
+
     private ReminderSettingsDTO reminderSettings;
+
 }
