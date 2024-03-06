@@ -1,5 +1,6 @@
 package com.paypilotprojectspring.bill.dto;
 
+import com.paypilotprojectspring.notification.dto.ReminderSettingsDTO;
 import com.paypilotprojectspring.notification.model.ReminderSettings;
 import lombok.*;
 
@@ -18,5 +19,5 @@ public class BillCellphoneDTO {
     private String from;
     private String to;
     private String dueDate;
-    private ReminderSettings reminderSettings;
+    private ReminderSettingsDTO reminderSettings;
 }
