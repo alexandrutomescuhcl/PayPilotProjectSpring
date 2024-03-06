@@ -7,6 +7,8 @@ import com.paypilotprojectspring.bill.mapper.BillGroceriesMapper;
 import com.paypilotprojectspring.bill.model.Bill;
 import com.paypilotprojectspring.bill.model.BillCategory;
 import com.paypilotprojectspring.bill.repository.BillRepository;
+import com.paypilotprojectspring.notification.mapper.ReminderSettingsMapper;
+import com.paypilotprojectspring.notification.repository.ReminderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import java.util.Optional;
 public class BillGroceriesService {
     private final BillRepository billRepository;
     private final BillGroceriesMapper billGroceriesMapper;
+    private final ReminderRepository reminderRepository;
+    private final ReminderSettingsMapper reminderSettingsMapper;
 
     public List<BillGroceriesDTO> findAll(String category){
         List<Bill> billList = billRepository.findBillsByBillCategory(BillCategory.valueOf(category));
@@ -36,6 +40,7 @@ public class BillGroceriesService {
     }
 
     public void addBill(BillGroceriesDTO billGroceriesDTO){
+        reminderRepository.save(reminderSettingsMapper.toEntity(billGroceriesDTO.getReminderSettingsDTO()));
         billRepository.save(billGroceriesMapper.dtoToEntity(billGroceriesDTO));
     }
 

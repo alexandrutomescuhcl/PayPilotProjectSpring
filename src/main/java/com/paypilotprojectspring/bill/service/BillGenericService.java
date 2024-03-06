@@ -34,6 +34,7 @@ public class BillGenericService {
             }
         } else {
             for (Bill bill : billRepository.findAll()) {
+                System.out.println(bill.getBillDateFrom());
                 if (bill.getBillCategory().equals(billCategory) &&
                         (bill.getBillDateFrom().isEqual(dateFrom) || bill.getBillDateFrom().isAfter(dateFrom)) &&
                         (bill.getBillDateTo().equals(dateTo) || bill.getBillDateFrom().isBefore(dateTo)) &&
