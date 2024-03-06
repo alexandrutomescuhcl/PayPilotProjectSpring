@@ -30,8 +30,7 @@ public class BillGenericController {
     @GetMapping("/matching")
     public List<Bill> getAllMatchingBills(@RequestParam String billCategory,
                                                           @RequestParam LocalDate dateFrom,
-                                                          @RequestParam LocalDate dateTo)
-    {
+                                                          @RequestParam LocalDate dateTo) {
         return billGenericService.getAllMatchingBills(BillCategory.valueOf(billCategory),
                 dateFrom,
                 dateTo);

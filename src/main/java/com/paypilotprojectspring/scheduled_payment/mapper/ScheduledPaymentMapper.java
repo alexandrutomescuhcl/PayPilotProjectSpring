@@ -1,17 +1,13 @@
 package com.paypilotprojectspring.scheduled_payment.mapper;
 
-import com.paypilotprojectspring.bank_details.model.BankDetails;
 import com.paypilotprojectspring.bank_details.repository.BankDetailsRepository;
-import com.paypilotprojectspring.bill.model.Bill;
-import com.paypilotprojectspring.bill.model.BillCategory;
 import com.paypilotprojectspring.bill.repository.BillRepository;
 import com.paypilotprojectspring.scheduled_payment.dto.ScheduledPaymentDto;
 import com.paypilotprojectspring.scheduled_payment.model.ScheduledPayment;
-import com.paypilotprojectspring.user.model.User;
 import com.paypilotprojectspring.user.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
+import java.util.Random;
 
 @Component
 public class ScheduledPaymentMapper {
@@ -43,9 +39,6 @@ public class ScheduledPaymentMapper {
         dto.setNameOfTheBill(dto.getNameOfTheBill());
         dto.setPayerAccount(entity.getPayerAccount());
 
-//        dto.setUserId(entity.getUser().getId());
-//        dto.setBankDetailsId(entity.getBankDetails().getBankDetailsId());
-//        dto.setBillId(entity.getUser().getId());
         return dto;
     }
 
@@ -54,8 +47,10 @@ public class ScheduledPaymentMapper {
             return null;
         }
         ScheduledPayment entity = new ScheduledPayment();
+        Random rand = new Random();
 
-        entity.setId(dto.getId());
+        int randomNum = rand.nextInt(1000) + 1;
+        entity.setId(randomNum);
         entity.setBillDate(dto.getBillDate());
         entity.setEnabled(dto.getEnabled());
         entity.setPaymentFrequency(dto.getPaymentFrequency());
@@ -65,42 +60,12 @@ public class ScheduledPaymentMapper {
         entity.setPayeeName(dto.getPayeeName());
         entity.setNameOfTheBill(dto.getNameOfTheBill());
         entity.setPayerAccount(dto.getPayerAccount());
+        entity.setNextPaymentDate(dto.getNextPaymentDate());
+        entity.setAmountToPay(dto.getAmountToPay());
 
         entity.setUserId(dto.getUserId());
         entity.setBankDetailsId(dto.getBankDetailsId());
         entity.setBillId(dto.getBillId());
-
-//        Optional<Bill> targetBill = billRepository.findByBillId(dto.getBillId());
-//        if (targetBill.isPresent()) {
-//            entity.setBill(targetBill.get());
-//        } else {
-//            Bill newBill = new Bill();
-//            newBill.setBillId(1L);
-//            newBill.setBillCategory(BillCategory.HOUSE_RENT);
-//
-//            billRepository.save(newBill);
-//            entity.setBill(newBill);
-//
-//        }
-//
-//        Optional<BankDetails> targetBankDetails = bankDetailsRepository.findById(dto.getBankDetailsId());
-//        if (targetBankDetails.isPresent()) {
-//            entity.setBankDetails(targetBankDetails.get());
-//        } else {
-//            BankDetails newBD = new BankDetails();
-//            newBD.setBankDetailsId(1);
-//
-//            entity.setBankDetails(newBD);
-//            bankDetailsRepository.save(newBD);
-//        }
-//
-//        Optional<User> targetUser = userRepository.findById(dto.getUserId());
-//        if (targetUser.isPresent()) {
-//            entity.setUser(targetUser.get());
-//        } else {
-//            entity.setUser(new User());
-//            entity.getUser().setId(1L);
-//        }
 
         return entity;
     }

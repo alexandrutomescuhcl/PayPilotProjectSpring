@@ -23,4 +23,6 @@ public class ScheduledPaymentDto {
     private String paymentMethod;
     private String payerAccount;
     private Boolean enabled;
+    private String nextPaymentDate;
+    private Double amountToPay;
 }

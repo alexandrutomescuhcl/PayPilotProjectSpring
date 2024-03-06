@@ -55,13 +55,11 @@ public class Bill {
     @Column(name = "bill_loan_type")
     @Enumerated(EnumType.STRING)
     private BillLoanType billLoanType;
-
-    /*@JsonIgnore
+    @JsonIgnore
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("billId")
     private User user;
-
     @OneToMany
-    List<Notification> notificationList;*/
+    List<Notification> notificationList;
 }

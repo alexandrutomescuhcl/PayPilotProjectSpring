@@ -39,11 +39,11 @@ public class ScheduledPaymentServiceImpl implements ScheduledPaymentService {
 
     @Override
     public ScheduledPayment cancelScheduledPayment(int id) {
-        Optional<ScheduledPayment> targetScheduledPayment = scheduledPaymentRepository.findById(id);
+        Optional<ScheduledPayment> scheduledPayment = scheduledPaymentRepository.findById(id);
 
-        if (targetScheduledPayment.isPresent()) {
-            targetScheduledPayment.get().setEnabled(false);
-            return scheduledPaymentRepository.save(targetScheduledPayment.get());
+        if (scheduledPayment.isPresent()) {
+            scheduledPayment.get().setEnabled(false);
+            return scheduledPaymentRepository.save(scheduledPayment.get());
         }
 
         return null;
@@ -53,7 +53,7 @@ public class ScheduledPaymentServiceImpl implements ScheduledPaymentService {
     public ScheduledPayment modifyScheduleDate(int id, ScheduledPaymentUpdateDateDto dto) {
         Optional<ScheduledPayment> targetScheduledPayment = scheduledPaymentRepository.findById(id);
         if (targetScheduledPayment.isPresent()) {
-            targetScheduledPayment.get().setBillDate(dto.getBillDate());
+            targetScheduledPayment.get().setNextPaymentDate(dto.getNextPaymentDate());
             return scheduledPaymentRepository.save(targetScheduledPayment.get());
         }
 
