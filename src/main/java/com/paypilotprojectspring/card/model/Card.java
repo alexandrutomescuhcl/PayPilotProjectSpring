@@ -34,6 +34,5 @@ public class Card {
     private Double creditLimit;
 
     @Column(name = "card_type")
-    @Enumerated(EnumType.STRING)
     private String cardType;
 }
